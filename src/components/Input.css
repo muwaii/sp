@@ -1,0 +1,12 @@
+.input-component {
+  background-color: blanchedalmond;
+  float: left;
+  width: 35%;
+  padding: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .input-component {
+    width: 100%;
+  }  
+}

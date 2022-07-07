@@ -1,0 +1,12 @@
+.content-component {
+  background-color: aquamarine;
+  float: right;
+  width: 65%;
+}
+
+
+@media screen and (max-width: 500px) {
+  .content-component {
+    width: 100%;
+  }  
+}
