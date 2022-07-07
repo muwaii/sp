@@ -16,11 +16,18 @@ function App() {
   const [loginPassword, setLoginPassword] = useState('');
   const [user, setUser] = useState({});
   const [image, setImage] = useState('');
+  // const [priceData, setPriceData] = useState('');
   const [inputData, setInputData] = useState({
     title: '',
     price: '',
-    // date: ''
   });
+  const [dayLeft, setDayLeft] = useState('');
+  const [collectMoney, setCollectMoney] = useState({
+    perDay: '',
+    perMonth: ''
+  });
+  const [isDayShow, setIsDayShow] = useState(false);
+  const [isMonthShow, setIsMonthShow] = useState(false);
 
   // what to do when the user changed their login
   // or another account if they sing out
@@ -79,7 +86,7 @@ function App() {
     });
   }
 
-  function myTime(e) {
+  function myTimeHandler(e) {
     const x = e.target.value
     const y = new Date(x);   
     const a = new Date();
@@ -90,9 +97,47 @@ function App() {
     const myDaySec = ((y.getTime()-a.getTime())/1000) / day;
     // console.log('diis day :', myDaySec, 'days (in sec)');
     const myDays = Math.ceil(myDaySec);
-    console.log('diis day :', myDays, 'days');
+    console.log('diff day :', myDays, 'days');
+    setDayLeft(myDays);
   }
 
+  function showDayHandler() {
+    setIsDayShow(prev => !prev);
+    if(dayLeft==='') {
+      alert('Please select date');
+    } else {
+      const priceNumber = Number(inputData.price); // set price to number for checking 
+      if(isNaN(priceNumber)) {
+        alert('Price should be a number') 
+        setInputData({...inputData, price: ''});
+      } else {
+        console.log('ไปต่อค่าา')
+        // เอา ราคา หาก จำนวนวันน
+        const pricePerDay = priceNumber / dayLeft;
+        console.log(pricePerDay)
+        setCollectMoney({ ...collectMoney, perDay: pricePerDay });
+      }
+    }
+  }
+
+  function showMonthHandler() {
+    setIsMonthShow(prev => !prev);
+    if(dayLeft==='') {
+      alert('Please select date');
+    } else {
+      const priceNumber = Number(inputData.price); // set price to number for checking 
+      if(isNaN(priceNumber)) {
+        alert('Price should be a number') 
+        setInputData({...inputData, price: ''});
+      } else {
+        console.log('ไปต่อค่าา')
+        // เอา ราคา หาก จำนวนวันน
+        const pricePerMonth = priceNumber / (dayLeft/30);
+        console.log(pricePerMonth)
+        setCollectMoney({ ...collectMoney, perMonth: pricePerMonth });
+      }
+    }
+  }
 
 
   if(!user) {
@@ -133,12 +178,20 @@ function App() {
             image={image}
             setImage={setImage}
             imageHandler={imageHandler}
-            myTime={myTime}
+            myTimeHandler={myTimeHandler}
             onInputChange={onInputChange}
+            inputData={inputData}
+            showDayHandler={showDayHandler}
+            showMonthHandler={showMonthHandler}
+            isDayShow={isDayShow}
+            isMonthShow={isMonthShow}
           />
           <Content 
             image={image} 
             inputData={inputData}
+            collectMoney={collectMoney}
+            isDayShow={isDayShow}
+            isMonthShow={isMonthShow}
           />
         </section>
         <Footer />

@@ -3,15 +3,17 @@ import './Content.css';
 
 function Content(props) {
 
-  const { image, inputData } = props;
+  const { image, inputData, collectMoney, isDayShow, isMonthShow } = props;
 
 
   return (
     <div className='content-component'>
-      <h1>Add your Image this is content component</h1>
+      <h1>{inputData.title}</h1>
       <div>
         <img src={image} id="img"/>
       </div>
+      { isDayShow ? <div>{collectMoney.perDay}</div> : '' }
+      { isMonthShow ? <div>{collectMoney.perMonth}</div> : '' }
       
 
 
