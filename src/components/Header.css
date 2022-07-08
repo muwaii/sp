@@ -1,3 +1,33 @@
 .header-component {
   background-color: rgb(130, 130, 206);
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+}
+
+.header-text {
+  padding: 8px;
+}
+
+.logout-btn {
+  margin: 5px;
+  margin-top: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .header-text {
+    font-size: 4vw;
+    margin-top: 1vw;
+  }
+
+  .logout-btn {
+    margin: 5px;
+    margin-top: 7px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 }

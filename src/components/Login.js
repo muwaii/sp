@@ -1,26 +1,44 @@
-import { LayoutRouteProps } from "react-router-dom";
+import './Login.css' 
 
 function Login(props) {
-  const { setIsLogin, setLoginEmail, setLoginPassword, login } = props;
+  const { setIsLogin, setLoginEmail, setLoginPassword, 
+    login, errMsg, setErrMsg } = props;
   return (
-      <div>
-        <div>
-          <h4>Login</h4>
+      <div className="login-component">
+        <div className="header-gogetit">go get it</div>
+        <div className="err-msg">{errMsg}</div>
+        <div className="input-container">
           <input
-            placeholder='Email...'
+            type="text"
+            className="email-input"
+            placeholder='Email Address'
             onChange={e => {
+              setErrMsg('');
               setLoginEmail(e.target.value);
             }}
           />
+        </div>
+        <div className="input-container">
           <input
-            placeholder='Password...'
+            type="password"
+            className="password-input"
+            placeholder='Password'
             onChange={e => {
+              setErrMsg('');
               setLoginPassword(e.target.value);
             }}
           />
-          <button onClick={login}>Login</button>
         </div>
-        <button onClick={() => setIsLogin(prev => !prev)}>Sign in</button>
+        <div className="input-container">
+          <button className="login-btn" onClick={login}>Log in</button>
+        </div>
+        <div className="forgot-password">
+          <a href="mailto:muawatt@gmail.com">Forgotten password?</a>
+        </div>
+        <div>
+          <span>Don't have an account? </span>
+          <button className="back-to-signin" onClick={() => setIsLogin(prev => !prev)}>Sign up</button>
+        </div>
       </div>
   )
 }

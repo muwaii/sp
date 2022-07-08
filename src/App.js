@@ -28,6 +28,7 @@ function App() {
   });
   const [isDayShow, setIsDayShow] = useState(false);
   const [isMonthShow, setIsMonthShow] = useState(false);
+  const [errMsg, setErrMsg] = useState('');
 
   // what to do when the user changed their login
   // or another account if they sing out
@@ -41,7 +42,7 @@ function App() {
     try {
       const user = await createUserWithEmailAndPassword(auth, regEmail, regPassword);
     } catch(err) {
-      console.log(err.message);
+      setErrMsg(err.message);
     }
   }
 
@@ -49,16 +50,13 @@ function App() {
     try {
       const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     } catch(err) {
-      console.log(err.message);
+      setErrMsg(err.message);
     }
   }
 
   async function logout() {
     await signOut(auth);
   }
-
-  //--------------------------------------------------------
-
 
   function imageHandler(e) {
     const reader = new FileReader();
@@ -90,14 +88,8 @@ function App() {
     const x = e.target.value
     const y = new Date(x);   
     const a = new Date();
-    // console.log('today :', a.getTime(), a);
-    // console.log('that day :', y.getTime(), y);
-    // console.log('diff day :', y.getTime()-a.getTime(), 'ms');
-    // console.log('diff day :', (y.getTime()-a.getTime())/1000, 'sec');
     const myDaySec = ((y.getTime()-a.getTime())/1000) / day;
-    // console.log('diis day :', myDaySec, 'days (in sec)');
     const myDays = Math.ceil(myDaySec);
-    console.log('diff day :', myDays, 'days');
     setDayLeft(myDays);
   }
 
@@ -111,10 +103,7 @@ function App() {
         alert('Price should be a number') 
         setInputData({...inputData, price: ''});
       } else {
-        console.log('ไปต่อค่าา')
-        // เอา ราคา หาก จำนวนวันน
         const pricePerDay = priceNumber / dayLeft;
-        console.log(pricePerDay)
         setCollectMoney({ ...collectMoney, perDay: pricePerDay });
       }
     }
@@ -130,10 +119,7 @@ function App() {
         alert('Price should be a number') 
         setInputData({...inputData, price: ''});
       } else {
-        console.log('ไปต่อค่าา')
-        // เอา ราคา หาก จำนวนวันน
         const pricePerMonth = priceNumber / (dayLeft/30);
-        console.log(pricePerMonth)
         setCollectMoney({ ...collectMoney, perMonth: pricePerMonth });
       }
     }
@@ -143,20 +129,46 @@ function App() {
   if(!user) {
     if(isLogin) {
       return (
-        <div className="App">
+        <div className="sign-in-page">
+
           <div>
-            <h4>and jump right into it</h4>
-            <input 
-              placeholder='Email...' 
-              onChange={e => setRegEmail(e.target.value)}
-            />
-            <input 
-              placeholder='Password...' 
-              onChange={e => setRegPassword(e.target.value)}
-            />
-            <button onClick={register}>Create User</button>
+            <div className='header-signin'>Let's make a wish</div>
+            <div className='err-msg'>{errMsg}</div>
+            <div className='input-container'>
+              <input 
+                className="password-input"
+                type="text"
+                placeholder='Email Address' 
+                onChange={e => {
+                  setErrMsg('');
+                  setRegEmail(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className='input-container'>
+              <input 
+                className="password-input"
+                type="password"
+                placeholder='Password' 
+                onChange={e => {
+                  setErrMsg('');
+                  setRegPassword(e.target.value)
+                }}
+              />
+            </div>
+
+            <div className="input-container">
+              <button className='create-btn' onClick={register}>Create User</button>
+            </div>
+
+            <div>
+              <span>You have an account?</span>
+              <button className='go-to-login' onClick={() => setIsLogin(prev => !prev)}>Login</button>
+            </div>
+
           </div>
-          <button onClick={() => setIsLogin(prev => !prev)}>Login</button>
+
         </div>
       );
     } else {
@@ -166,6 +178,8 @@ function App() {
           setLoginEmail={setLoginEmail}
           setLoginPassword={setLoginPassword}
           login={login}
+          errMsg={errMsg} 
+          setErrMsg={setErrMsg}
         />
       )
     }

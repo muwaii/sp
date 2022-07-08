@@ -1,26 +1,17 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.sign-in-page {
+.login-component {
   background-image: url("/public/cesar-couto-sKuVjm0xyLY-unsplash.jpeg");
   filter: brightness(1.4);
   background-size: cover;
-  width: 100vw;
-  height: 100vh;
+  width: 100vw; 
+  height: 100vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: center;
+  text-align: center; 
   padding-bottom: 30vh;
 }
 
-.header-signin {
+.header-gogetit {
   padding: 20px;
   font-size: 35px;
   color: rgb(237, 236, 236)
@@ -45,22 +36,28 @@ body {
   outline: none;
 }
 
-.create-btn {
+.login-btn {
   color: rgb(202, 202, 202);
   background-color: rgb(172, 65, 101);
   width: 100%;
   padding: 8px 0;
+  /* border: none; */
   border-radius: 5px;
 }
 
-.go-to-login {
+.forgot-password, a {
+  color: rgb(0, 0, 123);
+  padding: 10px 0; 
+  text-decoration: none;
+}
+
+.back-to-signin {
   margin-top: 10px;
   background: none;
   border: none;
   cursor: pointer;
   color: rgb(0, 0, 123);
 }
-
 
 @media screen and (max-width: 500px) {
   .header {
@@ -71,12 +68,4 @@ body {
     width: 75%;
     margin: 0 auto;
   }
-}
-
-.main-content {
-  background-image: url(/public/visax-P24NGnpfokw-unsplash.jpeg);
-  background-size: cover;
-  height: 92vh;
-  margin: 0;
-  padding: 0;
 }

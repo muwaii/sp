@@ -1,12 +1,78 @@
 .content-component {
-  background-color: aquamarine;
   float: right;
   width: 65%;
+  height: 92vh;
+  padding-right: 17vw;
 }
 
+.header-content {
+  color: white;
+  font-size: 4vw;
+  text-align: center;
+  margin-top: 2vw;
+}
+
+.img-container {
+  width: 35vw;
+  height: 26.25vw;
+  margin: 0 auto;
+  margin-top: 1vw;
+}
+
+img {
+  border: 1px solid pink;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.day-price, .month-price {
+  text-align: center;
+  color: white;
+  font-size: 1.5vw;
+}
+
+.day-price {
+  margin-top: 20px;
+}
+
+.month-price {
+  margin-top: 10px;
+}
 
 @media screen and (max-width: 500px) {
+  .header-content {
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 7vw; 
+  }
+
   .content-component {
     width: 100%;
+    height: 69vh;
+    padding: 0;
   }  
+
+  .img-container {
+    width: 60vw;
+    height: 45vw;
+    margin: 0 auto;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  .day-price, .month-price {
+    text-align: center;
+    font-size: 4.5vw;
+  } 
+
+  .day-price {
+    margin-top: 20px;
+  }
+
+  .month-price {
+    margin-top: 10px;
+  }
 }

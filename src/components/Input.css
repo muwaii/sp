@@ -1,12 +1,41 @@
 .input-component {
-  background-color: blanchedalmond;
+  background: none;
   float: left;
   width: 35%;
   padding: 20px;
+  text-align: center;
+  height: 92vh;
+  margin-top: 6vw;
+  font-size: 2.5vw;
+}
+
+.show-day-btn, .show-month-btn {
+  color: rgb(0, 0, 0);
+  background-color: rgb(240, 139, 173);
+}
+
+.date-container {
+  margin-top: 2vw;
 }
 
 @media screen and (max-width: 500px) {
   .input-component {
     width: 100%;
+    height: 23vh;
+    margin-top: 1vw;
+    font-size: 4vw;
   }  
+
+  .my-wish-list-input {
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+  }
+  
+  .show-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2vw;
+  }
 }
+
